@@ -79,7 +79,7 @@ function showDetailed(item) {
       <p class="now__info info">Wind: ${item.wind}</p>
       <p class="now__info info">Humidity: ${item.humidity}</p>
       <p class="now__info info">Clouds: ${item.clouds}</p>
-      <img src="${item.background}.png" class="now__background">
+      <!--<img src="img/${item.background}.png" class="now__background">-->
       <hr>
    `
    resultBlock.innerHTML = layout;
