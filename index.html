@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Get Weather</title>
+</head>
+<body>
+   <main class="main">
+      <div class="container">
+         <div class="get-city">
+            <label for="getCity" class="get-city__label title">
+               Enter city
+            </label>
+            <input type="text" placeholder="London" class="get-city__input" id="getCity">
+            <button id="getCityBtn" onclick="getCity()">Get Weather</button>
+         
+            <p id="getCityError" class="get-city__error"></p>
+         </div>         
+      </div>
+
+      <div class="now">
+         <div class="now-result" id="weatherResult">
+            
+         </div>
+      </div>
+
+      <div id="dashboards" class="dashboards"></div>
+   </main>
+   <script src="js/main.js"></script>
+</body>
+</html>
