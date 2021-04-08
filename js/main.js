@@ -1,10 +1,10 @@
 function getCity() {
    const city = document.getElementById('getCity').value;
    //checkCity('Brody');
-   checkCity(city);
+   getJSON(city);
 }
 
-function checkCity(city) {
+function getJSON(city) {
 
    let errorBlock = document.getElementById('getCityError');
    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&lang=usa&appid=b86d25efa06fcc75c173ef045c593220`)
