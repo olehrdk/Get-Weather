@@ -75,13 +75,11 @@
    height: auto;
    z-index: 6;
    .get-city__label {
-      font-size: 20px;
-      margin-bottom: 10px;
-      line-height: 25px;
+      display: none;
    }
    .get-city__input {
       font-size: 20px;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       background-color: rgba(0,0,0, 0.1);  
       &:focus{
          background-color: rgba(0,0,0, 0.2);
@@ -93,7 +91,7 @@
    .get-city__btn{
       font-size: 16px;
       line-height: 25px;
-      padding: 10px 20px;
+      padding: 5px 20px;
       background-color: rgba(0,0,0, 0.2);
       @media(min-width: 767px){
          &:hover{
