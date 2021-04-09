@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+@import 'reset.scss';
+body{
+   font-family: 'Roboto', sans-serif;
+   font-size: 20px;
+   font-weight: 400;
+   letter-spacing: 0.1em;
+}
+.main{
+   background: url('../img/01n.jpg') 0 0/cover no-repeat;
+}
+.container{
+   max-width: 1220px;
+   margin: 0 auto;
+   @media (max-width: 1200px){
+      &{
+         max-width: 970px;
+      }
+   }
+   @media (max-width: 992px){
+      &{
+         max-width: 750px;
+      }
+   }
+   @media (max-width: 767px){
+      &{
+         max-width: none;
+         padding: 0 10px;
+      }
+   }
+}
+.title {
+   font-size: 40px;
+   line-height: 50px;
+   text-transform: uppercase;
+   letter-spacing: 0.2;
+   font-weight: 700;
+   text-align: center;
+}
+
+.info{
+   font-size: 16px;
+   line-height: 20px;
+}
+
+@import 'input.scss';
+@import 'popup.scss';

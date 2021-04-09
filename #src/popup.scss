@@ -1,0 +1,114 @@
+
+.popup{
+   display: none;
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   z-index: 5;  
+   background-color: #fff;
+}
+.now{
+   height: 100vh;
+   font-size: 25px;
+   .now-result{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;     
+      height: 100vh;
+      .now__city{
+      }
+      .now__day{
+         font-size: 30px;
+         margin-bottom: 20px;  
+         font-weight: 300;
+      }
+      .now__time{
+         font-size: 60px;
+         margin-bottom: 5px;  
+         font-weight: 300;    
+      }
+      .now__temp{
+         font-size: 50px;
+      }
+      .now__info{
+         line-height: 30px;
+      }   
+   }
+   .more{
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: 300;
+      position: relative;
+      bottom: 50px;
+      font-size: 18px;
+      &:before, &:after{
+         content: '';
+         position: absolute;
+         background-color: #fff;
+         width: 10px;
+         height: 2px;
+         bottom: -15px;
+         left: 49.7%;
+         animation: more 0.5s ease-in  infinite alternate;
+      }
+      &::before{
+         transform: rotate(45deg) translate(-50%);         
+      }
+      &::after{
+         transform: rotate(130deg) translate(-50%);
+      }
+   }
+}
+
+@keyframes more{
+   0%{
+      bottom: -15px;
+   }
+   100%{
+      bottom: -20px;
+   }
+}
+
+
+.another-results{
+   padding: 50px 0px;
+   background-color: rgba(102, 98, 98, 0.6);
+   .dashboards{
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+      .dashboard{
+         text-align: center;
+         margin-bottom: 10px;
+         padding: 0 5px 5px 5px;
+         position: relative;
+         background: hsla(0, 0%, 100%, .25) border-box;
+         box-shadow: 0 0 0 0px hsla(0, 0%, 100%, .3) inset, 0 .5em 1em rgba(0, 0, 0, 0.6);
+         max-width: 130px;
+         .dasboard__img{
+            width: 70px;
+            height: 70px;
+         }
+         @media(min-width: 767px){
+            transition: 0.3s;
+            cursor: pointer;
+            &:hover{
+               transform: scale(1.05);
+               //box-shadow: 0 0 0 0px hsla(0, 0%, 100%, .3) inset, 0 .5em 1em rgba(0, 0, 0, 0.6);
+            }
+         }
+      }
+
+      .hours-dasboard{
+         
+      }
+      .days-dasboard{
+
+      }
+   }
+   
+}

@@ -1,0 +1,104 @@
+.get-city{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   position: relative;
+   &__block{
+
+   }
+		&__label {
+         color: #DADADA;
+         margin-bottom: 15px;
+		}
+
+		&__input {
+         text-align: center;
+         font-size: 60px;
+         background-color: inherit;
+         color: #fff;
+         margin-bottom: 20px;
+         padding: 10px;
+         background-color: rgba(0,0,0, 0.3);
+         border-radius: 10px;   
+         &:focus{
+            background-color: rgba(0,0,0, 0.5);
+         }
+		}
+
+		&__error {
+         color: #ff2f00;
+         position: relative;
+         top: 1%;
+         font-size: 25px;
+		}
+
+      &__btn{
+         font-size: 30px;
+         line-height: 45px;
+         padding: 10px 40px;
+         color: #DADADA;
+         background-color: rgba(0,0,0, 0.5);
+         border-radius: 10px; 
+         transition-duration: 0.3;
+         text-transform: capitalize;
+         @media(min-width: 767px){
+            &:hover{
+               background-color: rgba(0,0,0, 0.6);
+               color: #fff;
+            }
+         }
+         
+      }
+   @media(max-width: 740px){
+
+		&__input {
+         max-width: 90%;  
+         font-size: 40px;
+		}
+
+		&__error {
+         
+		}
+
+      &__btn{
+         
+      }
+   }
+}
+
+.get-city.active{
+   position: absolute;
+   right: 10px;
+   top: 10px;
+   height: auto;
+   z-index: 6;
+   .get-city__label {
+      font-size: 20px;
+      margin-bottom: 10px;
+      line-height: 25px;
+   }
+   .get-city__input {
+      font-size: 20px;
+      margin-bottom: 15px;
+      background-color: rgba(0,0,0, 0.1);  
+      &:focus{
+         background-color: rgba(0,0,0, 0.2);
+      }
+   }
+   .get-city__error {
+      font-size: 16px;
+   }
+   .get-city__btn{
+      font-size: 16px;
+      line-height: 25px;
+      padding: 10px 20px;
+      background-color: rgba(0,0,0, 0.2);
+      @media(min-width: 767px){
+         &:hover{
+            background-color: rgba(0,0,0, 0.3);
+         }
+      }
+   }
+}

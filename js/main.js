@@ -23,7 +23,7 @@ function getJSON(city) {
 
       }).then(response => {
          if (errorBlock.innerText) {
-            errorBlock.innerText = "Now it's okay";
+            errorBlock.innerText = "";
          }
          getWeather(response);
 
@@ -34,12 +34,13 @@ function getJSON(city) {
 
 function getWeather(json) {
    let all = [];
+   const city = json.city.name;
    const list = json.list;
    let id = 0;
    //get all needed data
    for (let item of list) {
       let weather = {};
-
+      weather.city = city;
       weather.clouds = item.clouds.all + '%';
       weather.temp = Math.round((item.main.temp - 273.15));
       weather.humidity = item.main.humidity + '%';
@@ -60,8 +61,8 @@ function getWeather(json) {
       all.push(weather);
 
    }
+   showPopup();
    showDetailed(all[0]);
-
    //Seconde parametr - Block selector where to render HTML
    renderHTML(all.filter(item => item.day == all[0].day), '#dashboards');
    renderDaysHTML(all, '#daysDashboards')
@@ -72,16 +73,29 @@ function showDetailed(item) {
    let precipitation = renderPrecipitation(item);
 
    let layout = `
-      <p class="now__day">Day: ${item.day} </p>
-      <p class="now__time">Time: ${item.time} </p>
-      <p class="now__temp">Temp: ${item.temp}°C</p>
-       <p class="now__info info">${precipitation}</p>
-      <p class="now__info info">Wind: ${item.wind}</p>
-      <p class="now__info info">Humidity: ${item.humidity}</p>
-      <p class="now__info info">Clouds: ${item.clouds}</p>
-      <!--<img src="img/${item.background}.png" class="now__background">-->
-      <hr>
+      <p class="now__city title">${item.city} </p>
+      <p class="now__time">${item.time} </p>
+      <p class="now__day">${item.day} </p>      
+      <p class="now__temp">${item.temp}°C</p>
+       <p class="now__info">${precipitation}</p>
+      <p class="now__info ">Wind: ${item.wind}</p>
+      <p class="now__info ">Humidity: ${item.humidity}</p>
+      <p class="now__info ">Clouds: ${item.clouds}</p>
+      <!--<div class="now__background">
+         <img src="img/${item.background}.jpg">
+      </div>-->
    `
+   let nowBlock = document.querySelector('.now');
+   let getCity = document.querySelectorAll('._get-city');
+   if (item.background[2] == 'd') {
+      nowBlock.style.color = "#000"
+      getCity.forEach(item => item.style.color = "#000")
+   } else {
+      nowBlock.style.color = "#fff"
+      getCity.forEach(item => item.style.color = "#fff")
+   }
+   nowBlock.style.background = `url('img/${item.background}.jpg') 0 0/cover no-repeat `;
+
    resultBlock.innerHTML = layout;
 }
 
@@ -93,13 +107,11 @@ function renderHTML(arr, selector) {
 
       let layout =
          `<div id="dashboard" class="dashboard" data-value="${i}" >
-            <p class="dashboard__day">Day: ${arr[i].day} </p>
-            <p class="dashboard__time">Time: ${arr[i].time} </p>
-            <p class="dashboard__info info">Temp: ${arr[i].temp}°C</p>
-            <p class="dashboard__info info">${precipitation}</p>
-            <img src="http://openweathermap.org/img/wn/${arr[i].background}@2x.png" class="dasboard__background">
+            <img src="http://openweathermap.org/img/wn/${arr[i].background}@2x.png" class="dasboard__img">
+            <p class="hours-dashboard__day">${arr[i].day},  ${arr[i].time}</p>
+            <p class="hours-dashboard__info info">Temp: ${arr[i].temp}°C</p>
+            <p class="hours-dashboard__info info">${precipitation}</p>            
          </div>
-         <hr>
          `
       result += layout;
    }
@@ -118,12 +130,13 @@ function renderDaysHTML(arr, selector) {
       for (let i = 0, id = i; id < arr.length; i++, id += 8) {
          let minMax = getMinMaxTemp(arr.filter(item => item.day == days[i]));
          let layout = `
-            <div id="daysDashboard" class="days-dashboard" data-value="${id}" >
-               <p class="days-dashboard__day">Day: ${arr[id].day} </p>           
-               <p class="days-dashboard__info info">Min: ${minMax.min}°C</p>
-               <p class="days-dashboard__info info">Max: ${minMax.max}°C</p>  
+            <div id="daysDashboard" class="dashboard" data-value="${id}" >
+               <img src="http://openweathermap.org/img/wn/${arr[id].background}@2x.png" class="dasboard__img">
+               <p class="days-dashboard__day">${arr[id].day} </p>           
+               <p class="days-dashboard__info info">min: ${minMax.min}°C | max: ${minMax.max}°C</p>
+               <p class="days-dashboard__info info"></p>
+               
             </div>
-            <hr>
          `
          result += layout;
       }
@@ -184,3 +197,21 @@ function getMinMaxTemp(arr) {
 
    return result
 }
+
+function showPopup() {
+   const popup = document.querySelector('.popup');
+   popup.style.display = 'block';
+
+   const getCityLabel = document.querySelector('.get-city');
+   getCityLabel.classList.add('active')
+}
+
+
+(function () {
+   document.querySelector('#getCity').addEventListener('keydown', function (e) {
+      if (e.keyCode === 13) {
+         // можете делать все что угодно со значением текстового поля
+         getCity()
+      }
+   })
+})();
